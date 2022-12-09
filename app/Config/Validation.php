@@ -41,4 +41,13 @@ class Validation extends BaseConfig
     // --------------------------------------------------------------------
     // Rules
     // --------------------------------------------------------------------
+
+    public $inwardsDataRule = [
+        'from' => 'required|xss_clean',
+        'to'=>'required|xss_clean',
+        'vehicle' => 'required|alpha_numeric|xss_clean',
+        'total_weight' => 'required|numeric|xss_clean',
+        'tare_weight' => 'required|numeric|xss_clean',
+        'mineral_weight' => 'required|numeric|xss_clean'
+    ];
 }
