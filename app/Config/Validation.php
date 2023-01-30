@@ -42,12 +42,28 @@ class Validation extends BaseConfig
     // Rules
     // --------------------------------------------------------------------
 
-    public $inwardsDataRule = [
-        'from' => 'required|xss_clean',
-        'to'=>'required|xss_clean',
-        'vehicle' => 'required|alpha_numeric|xss_clean',
-        'total_weight' => 'required|numeric|xss_clean',
-        'tare_weight' => 'required|numeric|xss_clean',
-        'mineral_weight' => 'required|numeric|xss_clean'
+    public $AddInwardDataRule = [
+        'vehicle' => 'required|alpha_numeric_punct',
+        'gross_weight' => 'required|numeric',
+        'tare_weight' => 'required|numeric',
+        'from' => 'required',
+        'to' => 'required'
+    ];
+
+    public $AddProductionDataRule = [
+        'vehicle' => 'required|alpha_numeric_punct',
+        'gross_weight' => 'required|numeric',
+        'tare_weight' => 'required|numeric',
+        'type' => 'required|in_list[5-18,10-40,fines,ob]',
+        'to' => 'required'
+    ];
+
+    public $viewInwardDataRule = [
+        'date' => 'required'
+    ];
+
+    public $viewProductionDataRule = [
+        'date' => 'required',
+        'type' => 'required|in_list[5-18,10-40,fines,ob]'
     ];
 }

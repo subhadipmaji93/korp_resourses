@@ -17,7 +17,7 @@ if (is_file(SYSTEMPATH . 'Config/Routes.php')) {
  * --------------------------------------------------------------------
  */
 $routes->setDefaultNamespace('App\Controllers');
-$routes->setDefaultController('Home');
+$routes->setDefaultController('Login');
 $routes->setDefaultMethod('index');
 $routes->setTranslateURIDashes(false);
 $routes->set404Override();
@@ -36,7 +36,39 @@ $routes->set404Override();
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
+$routes->get('/', 'Auth::index');
+$routes->get('auth/login', 'Auth::login');
+$routes->post('auth/login', 'Auth::login');
+$routes->get('dashboard', 'Dashboard::index', ['filter'=>'authGuard']);
+$routes->group('inwards', ['filter'=>'authGuard'], static function($routes){
+    $routes->get('rom', 'Inwards\Rom::index');
+    $routes->post('rom', 'Inwards\Rom::save');
+    $routes->get('ob', 'Inwards\OB::index');
+    $routes->post('ob', 'Inwards\OB::save');
+});
+$routes->group('production', ['filter'=>'authGuard'], static function($routes){
+    $routes->get('screen', 'Production\Screen::index');
+    $routes->post('screen', 'Production\Screen::save');
+    $routes->get('crusher', 'Production\Crusher::index');
+    $routes->post('crusher', 'Production\Crusher::save');
+    $routes->get('chute', 'Production\Chute::index');
+    $routes->post('chute', 'Production\Chute::save');
+    $routes->get('tantra', 'Production\Tantra::index');
+    $routes->post('tantra', 'Production\Tantra::save');
+    $routes->get('mines', 'Production\Mines::index');
+    $routes->post('mines', 'Production\Mines::save');
+});
+$routes->group('return', ['filter'=>'authGuard'], static function($routes){
+    $routes->get("/", 'Returns::index');
+    $routes->get("list", 'Returns::returnList');
+    $routes->post("list", 'Returns::returnList');
+    $routes->put("list", 'Returns::returnList');
+    $routes->get("alert", 'Returns::getAlertData');
+    $routes->post("upload", 'Returns::uploadData');
+    $routes->get("data", 'Returns::getReturnData');
+});
+$routes->get('uploads/(:any)', 'Resource::index/$1', ['filter'=>'authGuard']);
+$routes->get('logout', 'Auth::logout');
 
 /*
  * --------------------------------------------------------------------
