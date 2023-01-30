@@ -36,6 +36,12 @@ class UserSeeder extends Seeder
                 "password" => password_hash("jiten@1234", PASSWORD_DEFAULT),
                 "role" => 'way_bridge'
             ],
+            [
+
+                "username"=> 'gagan',
+                "password" => password_hash("gagan@2023", PASSWORD_DEFAULT),
+                "role" => 'viewer'
+            ]
         ]);
     }
 }
