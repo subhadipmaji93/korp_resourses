@@ -67,7 +67,17 @@ $routes->group('return', ['filter'=>'authGuard'], static function($routes){
     $routes->post("upload", 'Returns::uploadData');
     $routes->get("data", 'Returns::getReturnData');
 });
-$routes->get('uploads/(:any)', 'Resource::index/$1', ['filter'=>'authGuard']);
+$routes->group('client-info',  ['filter'=>'authGuard'], static function($routes){
+    $routes->get('/', 'ClientInfo::index');
+    $routes->get('client', 'ClientInfo::client');
+    $routes->post('client', 'ClientInfo::client');
+    $routes->put('client', 'ClientInfo::client');
+    $routes->delete('client', 'ClientInfo::client');
+});
+$routes->group('uploads', ['filter'=>'authGuard'], static function($routes){
+    $routes->get('/(:any)', 'Resource::index/$1');
+    $routes->get('clients/(:any)', 'Resource::client/$1');
+});
 $routes->get('logout', 'Auth::logout');
 
 /*

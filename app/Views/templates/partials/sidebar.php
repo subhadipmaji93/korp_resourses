@@ -23,7 +23,8 @@
                             <a href="/production/mines" class="dropdown-item">Mines</a>
                         </div>
                     </div>
-                    <a href="#" class="nav-item nav-link <?= isset($active)&&$active=='dispatch'?'active':''?>"><i class="fa fa-truck me-2""></i>Dispatch</a>
+                    <a href="/client-info" class="nav-item nav-link <?= isset($active)&&$active=='clientInfo'?'active':''?>"><i class="fas fa-users"></i>Client Info</a>
+                    <a href="#" class="nav-item nav-link <?= isset($active)&&$active=='dispatch'?'active':''?>"><i class="fa fa-truck me-2"></i>Dispatch</a>
                     <a href="/return" class="nav-item nav-link <?=isset($active)&&$active=='return'?'active':''?>"><i class="fas fa-calendar-alt"></i>Return</a>
                     <?php 
                         if(isset($role)&&($role=='admin' || $role=='viewer')){?>
