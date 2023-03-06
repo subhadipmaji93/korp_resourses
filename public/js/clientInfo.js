@@ -90,10 +90,13 @@ function viewClient(event){
         viewClient.innerHTML = `
             <input type="tconst url = baseUrlext" value="${cData.id}" hidden name="id">
             <div class="bg-light rounded p-4 mt-2 mb-2" data-ignore="true">
-                Name: <span>${cData.name}</span>
+                Full Name: <span>${cData.full_name}</span>
             </div>
             <div class="bg-light rounded p-4 mt-2 mb-2" data-ignore="true">
                 Type: <span>${cData.type}</span>
+            </div>
+            <div class="bg-light rounded p-4 mt-2 mb-2" data-id="clientName" data-label="Name" data-name="name" data-input="text">
+                Name: <span>${cData.name}</span>
             </div>
             <div class="bg-light rounded p-4 mt-2 mb-2" data-id="clientAddress" data-label="Address" data-name="address" data-input="text">
                 Address: <span>${cData.address}</span>

@@ -8,7 +8,7 @@ class ClientInfoModel extends Model
     protected $table            = 'ClientInfo';
     protected $primaryKey       = 'id';
     protected $returnType       = 'array';
-    protected $allowedFields    = ['name','address', 'type', 'gst', 'pan', 'cin','form_d','ibm','pollution','address_proof'];
+    protected $allowedFields    = ['full_name','name','address', 'type', 'gst', 'pan', 'cin','form_d','ibm','pollution','address_proof'];
 
     // Dates
     protected $dateFormat           = 'datetime';

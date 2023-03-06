@@ -40,6 +40,10 @@
                                     <label for="clientName">Name</label>
                                 </div>
                                 <div class="form-floating mb-2 w-100">
+                                    <input id="clientFullName" type="text" class="form-control" placeholder="Full Name" value="" name="full_name" autocomplete="off" required></input>
+                                    <label for="clientFullName">Full Name</label>
+                                </div>
+                                <div class="form-floating mb-2 w-100">
                                         <input id="clientAddress" type="text" class="form-control" placeholder="Address" value="" name="address" autocomplete="off" required></input>
                                         <label for="clientAddress">Address</label>
                                 </div>
