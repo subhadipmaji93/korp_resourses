@@ -74,6 +74,12 @@ $routes->group('client-info',  ['filter'=>'authGuard'], static function($routes)
     $routes->put('client', 'ClientInfo::client');
     $routes->delete('client', 'ClientInfo::client');
 });
+
+$routes->group('dispatch', ['filter'=>'authGuard'], static function($routes){
+    $routes->get('challan', 'Dispatch\Challan::index');
+    $routes->post('challan', 'Dispatch\Challan::generate');
+});
+
 $routes->group('uploads', ['filter'=>'authGuard'], static function($routes){
     $routes->get('/(:any)', 'Resource::index/$1');
     $routes->get('clients/(:any)', 'Resource::client/$1');
