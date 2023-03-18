@@ -78,6 +78,14 @@ $routes->group('client-info',  ['filter'=>'authGuard'], static function($routes)
 $routes->group('dispatch', ['filter'=>'authGuard'], static function($routes){
     $routes->get('challan', 'Dispatch\Challan::index');
     $routes->post('challan', 'Dispatch\Challan::generate');
+    $routes->group('ship-info', static function($routes){
+        $routes->get('/', 'Dispatch\ShipInfo::index');
+        $routes->get('ship', 'Dispatch\ShipInfo::ship');
+        $routes->post('ship', 'Dispatch\ShipInfo::ship');
+        $routes->put('ship', 'Dispatch\ShipInfo::ship');
+        $routes->delete('ship', 'Dispatch\ShipInfo::ship');
+        $routes->get('ship-list', 'Dispatch\ShipInfo::shipNameList');
+    });
 });
 
 $routes->group('uploads', ['filter'=>'authGuard'], static function($routes){

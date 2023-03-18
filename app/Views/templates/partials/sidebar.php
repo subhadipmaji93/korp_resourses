@@ -27,6 +27,7 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle <?= isset($active)&&$active=='dispatch'?'active':''?>" data-bs-toggle="dropdown"><i class="fa fa-truck me-2"></i>Dispatch</a>
                         <div class="dropdown-menu bg-transparent border-0">
+                            <a href="/dispatch/ship-info" class="dropdown-item">Ship Info</a>
                             <a href="/dispatch/challan" class="dropdown-item">Challan</a>
                         </div>
                     </div>
