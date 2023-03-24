@@ -6,13 +6,21 @@
     <div class="content">
         <?= $this->include('templates/partials/navbar', ['username'=>$username]) ?>
         <div class="container-fluid mt-2 pt-2 px-2 w-100">
-            <div class="mb-2 ms-2 w-100">
-                <label for="clientList">Client: </label>
-                <select id="clientList" class="ms-4 form-select-md" aria-label="client list" onchange="fetchClientData(event)" hidden>               
-                    <option selected value="default">Select Client</option>    
-                </select>
+            <div class="d-flex mb-2">
+                <div class="w-50">
+                    <label for="clientList">Client: </label>
+                    <select id="clientList" class="ms-4 form-select-md" aria-label="client list" onchange="fetchClientData(event)" hidden>               
+                        <option selected value="default">Select Client</option>    
+                    </select>
+                </div>
+                <div class="w-50">
+                    <label for="shipList">Ship To: </label>
+                    <select id="shipList" class="ms-4 form-select-md" aria-label="ship list" onchange="fetchShipData(event)" hidden>               
+                        <option selected value="default">Select</option>    
+                    </select>
+                </div>
             </div>
-        <form class="row g-2" action="" method="POST" target="_blank">
+        <form class="row g-2" action="" method="POST" target="_blank" onsubmit="setChallanId()">
                     <div class="col-sm-12 col-md-6 col-xl-6">
                         <div class="bg-light rounded py-2">
                             <fieldset class="border p-2">
@@ -45,13 +53,13 @@
                             <fieldset class="border p-2">
                                 <legend class="float-none w-auto p-2 fs-6">Challan Info</legend>
                                 <div class="w-100 d-flex">
-                                    <div class="form-floating mb-2 w-50 pe-2">
+                                    <div class="form-floating mb-2 w-75 pe-2">
                                         <input id="challanNo" type="text" placeholder="Challan No:" class="form-control" value="" name="challanNo" autocomplete="off" required></input>
                                         <label for="challanNo">Challan No:</label>
                                     </div>
                                     <div class="form-floating mb-2 w-50 pe-2">
-                                        <input id="challanDate" type="date" placeholder="Challan Date:" class="form-control" value="" name="challanDate" autocomplete="off" required></input>
-                                        <label for="challanDate">Challan Date:</label>
+                                        <input id="challanDate" type="date" placeholder="Date:" class="form-control" value="" name="challanDate" autocomplete="off" required></input>
+                                        <label for="challanDate">Date:</label>
                                     </div>
                                     <div class="form-floating mb-2 w-50">
                                         <input id="tpNo" type="text" placeholder="T.P. No:" class="form-control" value="" name="tpNo" autocomplete="off" required></input>
