@@ -70,4 +70,27 @@ class Chute extends BaseController
             return view('production/chute', $this->data);
         }
     }
+
+    public function currentMWeight(){
+        if($this->request->isAJAX() && $this->request->getMethod(true) == 'GET'){
+            $currentDate = null;
+            $nextDate = null;
+            $type = $this->request->getVar('type');
+            if($this->request->getVar('date')){
+                $currentDate = $this->request->getVar('date');
+                $nextDate = Time::parse($currentDate)->addDays(1)->toDateString();
+            } else{
+                $currentDate = Time::today()->toDateString();
+                $nextDate = Time::tomorrow()->toDateString();
+            }
+            $mWeightList = $this->dataModel->currentMWeight($currentDate, $nextDate, $type);
+            $total = 0.000;
+            foreach ($mWeightList as $data) {
+                $total += $data->mineral_weight;
+            }
+            return $this->response->setJSON(["total"=>$total]);
+        } else {
+            return $this->response->redirect("/production/chute");
+        }
+    }
 }

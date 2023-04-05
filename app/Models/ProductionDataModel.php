@@ -23,4 +23,12 @@ class DataModel extends Model
         $query = $builder->get();
         return $query->getResult();
     }
+
+    public function currentMWeight($date, $nxtDate, $type){
+        $builder = $this->builder();
+        $builder->select('mineral_weight');
+        $builder->where('date', $date)->where('date <', $nxtDate)->where('type', $type);
+        $query = $builder->get();
+        return $query->getResult();
+    }
 }

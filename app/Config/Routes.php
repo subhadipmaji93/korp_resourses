@@ -45,6 +45,9 @@ $routes->group('inwards', ['filter'=>'authGuard'], static function($routes){
     $routes->post('rom', 'Inwards\Rom::save');
     $routes->get('ob', 'Inwards\OB::index');
     $routes->post('ob', 'Inwards\OB::save');
+    // total mineral weight via ajax request
+    $routes->get('rom/current-mweight', 'Inwards\Rom::currentMWeight');
+    $routes->get('ob/current-mweight', 'Inwards\OB::currentMWeight');
 });
 $routes->group('production', ['filter'=>'authGuard'], static function($routes){
     $routes->get('screen', 'Production\Screen::index');
@@ -57,6 +60,12 @@ $routes->group('production', ['filter'=>'authGuard'], static function($routes){
     $routes->post('tantra', 'Production\Tantra::save');
     $routes->get('mines', 'Production\Mines::index');
     $routes->post('mines', 'Production\Mines::save');
+    // total mineral weight via ajax request
+    $routes->get('screen/current-mweight', 'Production\Screen::currentMWeight');
+    $routes->get('crusher/current-mweight', 'Production\Crusher::currentMWeight');
+    $routes->get('chute/current-mweight', 'Production\Chute::currentMWeight');
+    $routes->get('tantra/current-mweight', 'Production\Tantra::currentMWeight');
+    $routes->get('mines/current-mweight', 'Production\Mines::currentMWeight');
 });
 $routes->group('return', ['filter'=>'authGuard'], static function($routes){
     $routes->get("/", 'Returns::index');

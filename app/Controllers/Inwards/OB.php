@@ -71,4 +71,26 @@ class OB extends BaseController
         }
        
     }
+
+    public function currentMWeight(){
+        if($this->request->isAJAX() && $this->request->getMethod(true) == 'GET'){
+            $currentDate = null;
+            $nextDate = null;
+            if($this->request->getVar('date')){
+                $currentDate = $this->request->getVar('date');
+                $nextDate = Time::parse($currentDate)->addDays(1)->toDateString();
+            } else{
+                $currentDate = Time::today()->toDateString();
+                $nextDate = Time::tomorrow()->toDateString();
+            }
+            $mWeightList = $this->dataModel->currentMWeight($currentDate, $nextDate);
+            $total = 0.000;
+            foreach ($mWeightList as $data) {
+                $total += $data->mineral_weight;
+            }
+            return $this->response->setJSON(["total"=>$total]);
+        } else {
+            return $this->response->redirect("/inwards/ob");
+        }
+    }
 }
