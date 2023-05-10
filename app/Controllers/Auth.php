@@ -13,20 +13,19 @@ class Auth extends BaseController
     public function __construct()
     {
         helper('form');
-        $this->userModel = model('App\Models\UserModel');
     }
 
     public function index()
     {
         $this->response->redirect('auth/login');
-        // redirect()->to("/auth/login");
     }
 
     public function login(){
         if($this->request->getMethod() == 'get') return view('login', $this->data);
         $loginData = $this->request->getPost();
         $session = session();
-        $user = $this->userModel->where('username', $loginData['username'])->first();
+        $userModel = model('App\Models\UserModel');
+        $user = $userModel->where('username', $loginData['username'])->first();
         if($user){
             if(password_verify($loginData['password'], $user['password'])){
                 $session->set(['id'=>$user['id'], 'username'=>$user['username'], 'role'=>$user['role'], 'isLoggedIn'=>TRUE]);
