@@ -23,7 +23,8 @@
                             <a href="/production/mines" class="dropdown-item">Mines</a>
                         </div>
                     </div>
-                    <a href="/client-info" class="nav-item nav-link <?= isset($active)&&$active=='clientInfo'?'active':''?>"><i class="fas fa-users"></i>Client Info</a>
+                    <a href="/client-info" class="nav-item nav-link <?= isset($active)&&$active=='clientInfo'?'active':''?>"><i class="fas fa-users me-2"></i>Client Info</a>
+                    <a href="/stack-info" class="nav-item nav-link <?= isset($active)&&$active=='stackInfo'?'active':''?>"><i class="fas fa-layer-group me-2"></i>Stack Info</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle <?= isset($active)&&$active=='dispatch'?'active':''?>" data-bs-toggle="dropdown"><i class="fa fa-truck me-2"></i>Dispatch</a>
                         <div class="dropdown-menu bg-transparent border-0">
@@ -31,12 +32,12 @@
                             <a href="/dispatch/challan" class="dropdown-item">Challan</a>
                         </div>
                     </div>
-                    <a href="/return" class="nav-item nav-link <?=isset($active)&&$active=='return'?'active':''?>"><i class="fas fa-calendar-alt"></i>Return</a>
+                    <a href="/return" class="nav-item nav-link <?=isset($active)&&$active=='return'?'active':''?>"><i class="fas fa-calendar-alt me-2"></i>Return</a>
                     <?php 
                         if(isset($role)&&($role=='admin' || $role=='viewer')){?>
                         <a href="#" class="nav-item nav-link <?=isset($active)&&$active=='monitoring'?'active':'' ?>"><i class='fa fa-laptop me-2'></i>Monitoring</a>
                     <?php } ?>
-                    <a href="#" class="nav-item nav-link <?= isset($active)&&$active=='about'?'active':''?>"><i class="fas fa-info-circle"></i>About</a>
+                    <a href="#" class="nav-item nav-link <?= isset($active)&&$active=='about'?'active':''?>"><i class="fas fa-info-circle me-2"></i>About</a>
                 </div>
             </nav>
         </div>

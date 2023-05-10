@@ -84,6 +84,14 @@ $routes->group('client-info',  ['filter'=>'authGuard'], static function($routes)
     $routes->delete('client', 'ClientInfo::client');
 });
 
+$routes->group('stack-info', ['filter'=>'authGuard'], static function($routes){
+    $routes->get('/', 'StackInfo::index');
+    $routes->get('stack', 'StackInfo::stack');
+    $routes->post('stack', 'StackInfo::stack');
+    $routes->put('stack', 'StackInfo::stack');
+    $routes->delete('stack', 'StackInfo::stack');
+});
+
 $routes->group('dispatch', ['filter'=>'authGuard'], static function($routes){
     $routes->get('challan', 'Dispatch\Challan::index');
     $routes->post('challan', 'Dispatch\Challan::generate');
@@ -98,7 +106,7 @@ $routes->group('dispatch', ['filter'=>'authGuard'], static function($routes){
 });
 
 $routes->group('uploads', ['filter'=>'authGuard'], static function($routes){
-    $routes->get('/(:any)', 'Resource::index/$1');
+    $routes->get('(:any)', 'Resource::index/$1');
     $routes->get('clients/(:any)', 'Resource::client/$1');
 });
 $routes->get('logout', 'Auth::logout');
