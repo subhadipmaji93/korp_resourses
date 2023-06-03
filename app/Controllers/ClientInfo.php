@@ -49,7 +49,7 @@ class ClientInfo extends BaseController
                             if(($val->getMimeType() !== 'application/pdf') && (explode('/', $val->getMimeType())[0] !== 'image')){
                                 continue;
                             }
-                            $newName = $clientData['name'].'_'.$val->getName();
+                            $newName = $clientData['name'] . "_$key." . explode('.',$val->getName())[1];
                             $val->move(WRITEPATH . 'clients', $newName);
                             $clientData[$key]=$newName;
                         }
@@ -82,7 +82,7 @@ class ClientInfo extends BaseController
                                } catch (Exception $e) {
                                     //Do Nothing
                                }
-                                $newName = $clientData['name'].'_'.$val->getName();
+                                $newName = $clientData['name'] . "_$key." . explode('.',$val->getName())[1];
                                 $val->move(WRITEPATH . 'clients', $newName);
                                 $clientReqData[$key]=$newName;
                             }

@@ -106,8 +106,8 @@ $routes->group('dispatch', ['filter'=>'authGuard'], static function($routes){
 });
 
 $routes->group('uploads', ['filter'=>'authGuard'], static function($routes){
-    $routes->get('(:any)', 'Resource::index/$1');
     $routes->get('clients/(:any)', 'Resource::client/$1');
+    $routes->get('(:any)', 'Resource::index/$1');
 });
 $routes->get('logout', 'Auth::logout');
 
