@@ -114,8 +114,19 @@ function addParty(event){
     const client = document.getElementById("stackClientList");
     const quantity = document.getElementById("stackClientQuantity");
     if(client.value === "default" || quantity.value === "") return;
+    const stackCapacity = parseFloat(document.getElementById("stackCapacity").value).toFixed(3);
+    const stackCurrent = document.getElementById("stackCurrent");
+    if(isNaN(stackCapacity) || parseFloat(quantity.value).toFixed(3)>stackCapacity){
+        alert("Can't set client's quantity value greater than Stack Capacity!!");
+        return;
+    }
+    let stackCurrentValue = parseFloat(stackCurrent.value) + parseFloat(quantity.value);
+    if(stackCurrentValue.toFixed(3) > stackCapacity){
+        alert("Stack Current value exceeded Stack Capacity value!!");
+        return;
+    }
+    stackCurrent.value = stackCurrentValue.toFixed(3);
     const parties = document.getElementById("parties");
-
     parties.innerHTML += `<div class="bg-light rounded p-4 mt-2 mb-2">
         <span>${client.value} : ${quantity.value}</span>
         <button type="button" class="btn-close float-end" aria-label="Close" onclick="deleteParty(event)"></button>
@@ -126,6 +137,10 @@ function addParty(event){
 
 function deleteParty(event){
     event.preventDefault();
+    const stackCurrent = document.getElementById("stackCurrent");
+    let quantity = parseFloat(event.target.previousElementSibling.innerText.split(":")[1].trim()).toFixed(3);
+    let stackCurrentValue = parseFloat(stackCurrent.value).toFixed(3) - quantity;
+    stackCurrent.value = stackCurrentValue.toFixed(3);
     document.getElementById("parties").removeChild(event.target.parentElement);
 }
 

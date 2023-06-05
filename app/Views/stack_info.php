@@ -24,11 +24,11 @@
                                 </div>
                                 <div class="w-100 d-flex align-items-center mb-2">
                                     <div class="form-floating w-50 pe-2">
-                                        <input id="stackCapacity" type="text" class="form-control" placeholder="Max Capacity" value="" name="capacity" autocomplete="off" pattern="^\d*(\.\d{0,3})?$"  required></input>
+                                        <input id="stackCapacity" type="text" class="form-control" placeholder="Max Capacity" value="0" name="capacity" autocomplete="off" pattern="^\d*(\.\d{0,3})?$"  required></input>
                                         <label for="stackCapacity">Capacity (MT)</label>
                                     </div>
                                     <div class="form-floating w-50">
-                                        <input id="stackCurrent" type="text" class="form-control" placeholder="Current Material" value="" name="current" autocomplete="off" pattern="^\d*(\.\d{0,3})?$"></input>
+                                        <input id="stackCurrent" type="text" class="form-control" placeholder="Current Material" value="0" name="current" autocomplete="off" pattern="^\d*(\.\d{0,3})?$"></input>
                                         <label for="stackCurrent">Current Material (MT)</label>
                                     </div>
                                 </div>
