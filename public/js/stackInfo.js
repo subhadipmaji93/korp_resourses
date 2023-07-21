@@ -116,12 +116,12 @@ function addParty(event){
     if(client.value === "default" || quantity.value === "") return;
     const stackCapacity = parseFloat(document.getElementById("stackCapacity").value).toFixed(3);
     const stackCurrent = document.getElementById("stackCurrent");
-    if(isNaN(stackCapacity) || parseFloat(quantity.value).toFixed(3)>stackCapacity){
+    if(isNaN(stackCapacity) || Number(parseFloat(quantity.value).toFixed(3))>Number(stackCapacity)){
         alert("Can't set client's quantity value greater than Stack Capacity!!");
         return;
     }
-    let stackCurrentValue = parseFloat(stackCurrent.value) + parseFloat(quantity.value);
-    if(stackCurrentValue.toFixed(3) > stackCapacity){
+    let stackCurrentValue = Number(parseFloat(stackCurrent.value)) + Number(parseFloat(quantity.value));
+    if(Number(stackCurrentValue.toFixed(3)) > Number(stackCapacity)){
         alert("Stack Current value exceeded Stack Capacity value!!");
         return;
     }
@@ -139,7 +139,7 @@ function deleteParty(event){
     event.preventDefault();
     const stackCurrent = document.getElementById("stackCurrent");
     let quantity = parseFloat(event.target.previousElementSibling.innerText.split(":")[1].trim()).toFixed(3);
-    let stackCurrentValue = parseFloat(stackCurrent.value).toFixed(3) - quantity;
+    let stackCurrentValue = Number(parseFloat(stackCurrent.value).toFixed(3)) - Number(quantity);
     stackCurrent.value = stackCurrentValue.toFixed(3);
     document.getElementById("parties").removeChild(event.target.parentElement);
 }
