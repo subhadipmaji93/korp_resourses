@@ -127,6 +127,7 @@
                                     <select class="form-select form-select-md form-control" aria-label=".form-select-sm" size="1" id="returnType"
                                     name="type" onchange="showSubmitMonth(this.value)">
                                         <option selected value="Month">Per Month</option>
+                                        <option value="Quater">Per Quaterly</option>
                                         <option value="Year">Per Year</option>
                                         <option value="FiveYear">Per Five Years</option>
                                     </select>
@@ -168,7 +169,7 @@
                 <script>
                     function showSubmitMonth(value){
                         let returnMonth = document.getElementById("returnMonth");
-                        if(value === "Month"){
+                        if(value === "Month" || value === "Quater"){
                             returnMonth.hidden = true;
                             returnMonth.disabled = true;
                             returnMonth.nextElementSibling.hidden = true;

@@ -93,7 +93,13 @@ class Returns extends BaseController
                 $setReturnData['alert_date'] = Time::createFromDate($time->year, $setMonth, $returnListData["alert_day"]);
                 $setReturnData['submit_date'] = Time::createFromDate($time->year, $setMonth, $returnListData["submit_day"]);
                 break;
-            
+
+            case "Quater":
+                $setMonth = $time->month == 12 ? 3:$time->month + 3;
+                $setReturnData['alert_date'] = Time::createFromDate($time->year, $setMonth, $returnListData["alert_day"]);
+                $setReturnData['submit_date'] = Time::createFromDate($time->year, $setMonth, $returnListData["submit_day"]);
+                break;
+                
             case 'Year':
                 $setYear = $time->year + 1;
                 $setReturnData['alert_date'] = Time::createFromDate($setYear, $returnListData['submit_month'], $returnListData["alert_day"]);

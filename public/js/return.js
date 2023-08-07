@@ -38,8 +38,8 @@ function editModal2(event){
   let alert = event.target.parentElement.dataset.alert;
   let name = event.target.parentElement.children[0].textContent.trim();
   let type = event.target.parentElement.children[2].textContent.split(":")[1].trim();
-  let month = type === "Month"? "" : event.target.parentElement.children[4].textContent.split(":")[1].trim();
-  let day = type === "Month"? event.target.parentElement.children[4].textContent.split(":")[1].trim() : event.target.parentElement.children[6].textContent.split(":")[1].trim();
+  let month = (type === "Month" || type === "Quater")? "" : event.target.parentElement.children[4].textContent.split(":")[1].trim();
+  let day = (type === "Month" || type === "Quater")? event.target.parentElement.children[4].textContent.split(":")[1].trim() : event.target.parentElement.children[6].textContent.split(":")[1].trim();
   
   Modal2.getElementsByClassName("modal-title")[0].innerText = "Edit Return";
   
