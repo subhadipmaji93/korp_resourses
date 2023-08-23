@@ -15,6 +15,7 @@ class OB extends BaseController
         'view' => 'OB',
         'active' => 'inwards'
     ];
+    private $dataModel;
 
     public function __construct()
     {
@@ -49,16 +50,16 @@ class OB extends BaseController
 
     public function save()
     {
-        $this->validation = Services::validation();
-        if(! $this->validate($this->validation->getRuleGroup('AddInwardDataRule'))){
+        $validation = Services::validation();
+        if(! $this->validate($validation->getRuleGroup('AddInwardDataRule'))){
             $this->data['validation'] = $this->validator;
             return view('inwards/over_budden', $this->data);
         } else {
             $fieldData = $this->request->getPost();
-            $this->time = Time::now();
-            $fieldData['date'] = $this->time->toDateString();
-            $fieldData['time'] = $this->time->toTimeString();
-            $fieldData['time'] = $this->time->toTimeString();
+            $time = Time::now();
+            $fieldData['date'] = $time->toDateString();
+            $fieldData['time'] = $time->toTimeString();
+            $fieldData['time'] = $time->toTimeString();
             $fieldData['id'] = GenerateIdFromDateTime::generate($fieldData['date'], $fieldData['time']);
             $fieldData['mineral_weight'] = floatval($fieldData['gross_weight']) - floatval($fieldData['tare_weight']);
 

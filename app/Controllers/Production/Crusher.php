@@ -15,7 +15,7 @@ class Crusher extends BaseController
         'view' => 'Crusher',
         'active' => 'production'
     ];
-
+    private $dataModel;
     public function __construct()
     {
         helper('form');
@@ -51,16 +51,16 @@ class Crusher extends BaseController
     }
 
     public function save(){
-        $this->validation = Services::validation();
-        if(! $this->validate($this->validation->getRuleGroup('AddProductionDataRule'))){
+        $validation = Services::validation();
+        if(! $this->validate($validation->getRuleGroup('AddProductionDataRule'))){
             $this->data['validation'] = $this->validator;
             return view('production/crusher', $this->data);
         } else {
             $fieldData = $this->request->getPost();
-            $this->time = Time::now();
-            $fieldData['date'] = $this->time->toDateString();
-            $fieldData['time'] = $this->time->toTimeString();
-            $fieldData['time'] = $this->time->toTimeString();
+            $time = Time::now();
+            $fieldData['date'] = $time->toDateString();
+            $fieldData['time'] = $time->toTimeString();
+            $fieldData['time'] = $time->toTimeString();
             $fieldData['id'] = GenerateIdFromDateTime::generate($fieldData['date'], $fieldData['time']);
             $fieldData['mineral_weight'] = floatval($fieldData['gross_weight']) - floatval($fieldData['tare_weight']);
 
