@@ -164,7 +164,7 @@ function calculate(event){
 
     const amountWord = document.getElementById("amountWord");
     if(isTcs){
-        const tcsAmount = Math.round((tAmount * 1)/100);
+        const tcsAmount = Math.round((materialAmount * 1)/100);
         document.getElementById("grandAmount").value = (parseFloat(totalAmount.value) + tcsAmount).toFixed(2);
         document.getElementById("tcsVal").value = parseFloat(tcsAmount).toFixed(2);
         amountWord.value = inWords(parseInt(document.getElementById("grandAmount").value));
