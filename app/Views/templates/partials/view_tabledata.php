@@ -19,6 +19,9 @@
                                         <tr>
                                             <th scope="col" colspan="8">Date: <?= isset($date)?$date:''?></th>
                                         </tr>
+                                        <tr>
+                                            <th scope="col" colspan="8">Contractor: <?= isset($cname)?$cname:''?></th>
+                                        </tr>
                                     </thead>
                                     <tbody>
                                             <?php if(isset($tableData)){
@@ -59,6 +62,13 @@
                                         <input id="calender" type="datetime" class="form-control"
                                          placeholder="pick a date" value="" name="date"></input>
                                          <label for="calendar">Select date</label>
+                                    </div>
+                                    <h6 class="mb-2">Select Contractor</h6>
+                                    <div class="form-floating mb-2 w-100">
+                                    <select class="form-select-lg w-100" aria-label="Default select example" name="cname">
+                                        <option selected value="PS BROTHERS">PS BRTOHERS</option>
+                                        <option value="EASTERN ZONE">EASTERN ZONE</option>
+                                    </select>
                                     </div>
                                     <div class="form-floating mb-2 w-100 px-2">
                                         <input type="submit" class="btn btn-primary px-4" name="action" value="Fetch">

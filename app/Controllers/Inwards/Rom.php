@@ -32,10 +32,12 @@ class Rom extends BaseController
         $action = $this->request->getVar('action');
         if(!$selectDate) return view('inwards/rom', $this->data);
 
+        $cname = $this->request->getVar('cname');
         $nextDate = Time::parse($selectDate)->addDays(1)->toDateString();
-        $result = $this->dataModel->fetch($selectDate, $nextDate);
+        $result = $this->dataModel->fetch($selectDate, $nextDate, $cname);
         $this->data['tableData'] = $result;
         $this->data['date'] = $selectDate;
+        $this->data['cname'] = $cname;
         if($action == 'Export') {
             $name = "{$this->data['date']}-{$this->data['view']}.pdf";
             $pdf = new DataTablePdf(['view'=>$this->data['view'], 'date'=>$this->data['date']]);

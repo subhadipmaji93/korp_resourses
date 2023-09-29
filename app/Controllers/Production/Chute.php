@@ -33,11 +33,13 @@ class Chute extends BaseController
         $action = $this->request->getVar('action');
         if(!$selectDate) return view('production/chute', $this->data);
 
+        $cname = $this->request->getVar('cname');
         $nextDate = Time::parse($selectDate)->addDays(1)->toDateString();
-        $result = $this->dataModel->fetch($selectDate, $nextDate, $selectType);
+        $result = $this->dataModel->fetch($selectDate, $nextDate, $selectType, $cname);
         $this->data['tableData'] = $result;
         $this->data['date'] = $selectDate;
         $this->data['type'] = $selectType;
+        $this->data['cname'] = $cname;
         
         if($action == 'Export') {
             $name = "{$this->data['date']}-{$this->data['view']}-{$this->data['type']}.pdf";

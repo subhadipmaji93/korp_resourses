@@ -7,6 +7,15 @@
                 <h6 class="mb-2 p-2">Add <?= esc($view);?> Details</h6>
                 <?= form_open('') ?>
                     <div class="row g-2">
+                    <div class="col-sm-3 col-xl-3">
+                            <div class="bg-light rounded h-100 p-1">
+                                <select class="form-select-lg w-100" aria-label="Default select example" name="contractor">
+                                    <option selected>select Contractor</option>
+                                    <option value="PS BROTHERS">PS BRTOHERS</option>
+                                    <option value="EASTERN ZONE">EASTERN ZONE</option>
+                                </select>
+                            </div>
+                        </div>
                         <div class="col-sm-3 col-xl-3">
                             <div class="bg-light rounded h-100 p-1  ">
                                 <div class="form-floating mb-2 w-100">
@@ -73,6 +82,7 @@
                             </div>
                         </div>
                     </div>
+                    <!-- <button class="btn btn-primary px-2" onclick="connect(event)">Capture</button> -->
                     <input class="btn btn-primary px-2" type="submit" value="Submit">
                 <?= form_close() ?>
             </div>

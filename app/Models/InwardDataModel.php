@@ -10,16 +10,16 @@ class InwardDataModel extends Model
     protected $table            = '';
     protected $primaryKey       = 'id';
     protected $returnType       = 'array';
-    protected $allowedFields    = ['id', 'date', 'time', 'vehicle', 'gross_weight', 'tare_weight', 'mineral_weight', 'from', 'to', 'purpose'];
+    protected $allowedFields    = ['id', 'date', 'time','contractor', 'vehicle', 'gross_weight', 'tare_weight', 'mineral_weight', 'from', 'to', 'purpose'];
     
     public function access_table($tableName){
         $this->table = $tableName;
     }
 
-    public function fetch($date, $nxtDate){
+    public function fetch($date, $nxtDate, $cname){
         $builder = $this->builder();
         $builder->select('time, vehicle, gross_weight, tare_weight, mineral_weight, from, to, purpose');
-        $builder->where('date', $date)->where('date <', $nxtDate);
+        $builder->where('date', $date)->where('date <', $nxtDate)->where('contractor', $cname);
         $query = $builder->get();
         return $query->getResult();
     }

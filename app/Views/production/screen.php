@@ -25,7 +25,7 @@
     <?= isset($role) && $role == 'way_bridge'?
         $this->include('templates/partials/add_production_formdata', ['view'=>$view]): '' ?>
     <?= $this->include('templates/partials/view_production_tabledata',
-                 ['tableData'=>isset($tableData)?$tableData:false, 'date'=>isset($date)?$date:'', 'view'=>$view])?>
+                 ['tableData'=>isset($tableData)?$tableData:false, 'date'=>isset($date)?$date:'','cname'=>isset($cname)?$cname:'', 'view'=>$view])?>
     <?= $this->include('templates/partials/footer') ?>
     </div>
 </div>
