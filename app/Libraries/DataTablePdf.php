@@ -24,6 +24,9 @@ class DataTablePdf extends FPDF
         $this->Cell(60, 10, 'Type: '.$this->header['view'],0,0,'C');
         $this->SetX(145);
         $this->Cell(60, 10, 'Date: '.$this->header['date'],0,0,'C');
+        $this->Ln();
+        $this->SetX(70);
+        $this->Cell(60, 10, $this->header['cname'],0,0,'C');
         if(isset($this->header['type'])){
             $this->Ln();
             $this->SetFont('Arial','', 12);
@@ -33,14 +36,14 @@ class DataTablePdf extends FPDF
         $this->Ln();
         $this->SetFont('Arial', 'B', 9);
         $this->SetFillColor(204,235,255);
-        isset($this->header['type'])?$this->SetX(18):$this->SetX(8);
-        $this->Cell(20,10,'Time',1,0,'C',true);
+        isset($this->header['type'])?$this->SetX(25):$this->SetX(15);
+        $this->Cell(15,10,'Time',1,0,'C',true);
         isset($this->header['type'])?'':$this->Cell(22,10,'From',1,0,'C',true);
         $this->Cell(22,10,'To',1,0,'C',true);
-        $this->Cell(25,10,'Vehicle No:',1,0,'C',true);
-        $this->Cell(25,10,'Gross w/t (MT)',1,0,'C',true);
-        $this->Cell(25,10,'Tare w/t (MT)',1,0,'C',true);
-        $this->Cell(26,10,'Mineral w/t (MT)',1,0,'C',true);
+        $this->Cell(20,10,'Vehicle No',1,0,'C',true);
+        $this->Cell(20,10,'Gross w/t',1,0,'C',true);
+        $this->Cell(20,10,'Tare w/t',1,0,'C',true);
+        $this->Cell(20,10,'Mineral w/t',1,0,'C',true);
         $this->Cell(30,10,'Purpose',1,0,'C',true);
         $this->Ln();
     }
@@ -50,34 +53,36 @@ class DataTablePdf extends FPDF
         $this->SetFillColor(255);
 
         $total = 0.000;
-
+        $trip = 0;
         foreach($tableData as $data){
-            isset($this->header['type'])?$this->SetX(18):$this->SetX(8);
+            $trip += 1;
+            isset($this->header['type'])?$this->SetX(25):$this->SetX(15);
             $sw = ceil($this->GetStringWidth($data->purpose));
             $h = ceil($sw / 30);
             if($sw>30){
                 $h = $h + 1;
             }
             $total = $total + $data->mineral_weight;
-            $this->Cell(20,10*$h,$data->time,1,0,'C',true);
+            $this->Cell(15,10*$h,$data->time,1,0,'C',true);
             isset($this->header['type'])?'':$this->Cell(22,10*$h,$data->from,1,0,'C',true);
             $this->Cell(22,10*$h,$data->to,1,0,'C',true);
-            $this->Cell(25,10*$h,$data->vehicle,1,0,'C',true);
-            $this->Cell(25,10*$h,$data->gross_weight,1,0,'C',true);
-            $this->Cell(25,10*$h,$data->tare_weight,1,0,'C',true);
-            $this->Cell(26,10*$h,$data->mineral_weight,1,0,'C',true);
+            $this->Cell(20,10*$h,$data->vehicle,1,0,'C',true);
+            $this->Cell(20,10*$h,$data->gross_weight,1,0,'C',true);
+            $this->Cell(20,10*$h,$data->tare_weight,1,0,'C',true);
+            $this->Cell(20,10*$h,$data->mineral_weight,1,0,'C',true);
             $this->MultiCell(30,10,$data->purpose,1);
         }
         $this->SetFillColor(204,235,255);
         if(isset($this->header['type'])){
-            $this->SetX(18);
-            $mnrl_width = 117;
+            $this->SetX(25);
+            $mnrl_width = 60;
         } else {
-            $this->SetX(8);
-            $mnrl_width = 139;
+            $this->SetX(15);
+            $mnrl_width = 82;
         }
+        $this->Cell(37,10,'Trip: '.$trip,1,0,'C',true);
         $this->Cell($mnrl_width,10,'Total Mineral Weight:',1,0,'C',true);
-        $this->Cell(56,10,number_format($total,3).' TON',1,0,'C',true);
+        $this->Cell(50,10,number_format($total,3).' TON',1,0,'C',true);
     }
 
     function Footer(){
@@ -86,6 +91,4 @@ class DataTablePdf extends FPDF
         $this->Cell(0,10,'Page '.$this->PageNo(),0,0,'C');
     }
 }
-
-
 ?>

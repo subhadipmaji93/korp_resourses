@@ -43,7 +43,7 @@ class Tantra extends BaseController
 
         if($action == 'Export') {
             $name = "{$this->data['date']}-{$this->data['view']}-{$this->data['type']}.pdf";
-            $pdf = new DataTablePdf(['view'=>$this->data['view'], 'date'=>$this->data['date'], 'type'=>$this->data['type']]);
+            $pdf = new DataTablePdf(['view'=>$this->data['view'], 'date'=>$this->data['date'], 'type'=>$this->data['type'], 'cname'=>$this->data['cname']]);
             $pdf->AddPage();
             $pdf->LoadTable($this->data['tableData']);
             $pdf->Output('D', $name);

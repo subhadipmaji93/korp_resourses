@@ -43,6 +43,7 @@ class Validation extends BaseConfig
     // --------------------------------------------------------------------
 
     public $AddInwardDataRule = [
+        'contractor' => 'required',
         'vehicle' => 'required|alpha_numeric_punct',
         'gross_weight' => 'required|numeric',
         'tare_weight' => 'required|numeric',
@@ -51,6 +52,7 @@ class Validation extends BaseConfig
     ];
 
     public $AddProductionDataRule = [
+        'contractor' => 'required',
         'vehicle' => 'required|alpha_numeric_punct',
         'gross_weight' => 'required|numeric',
         'tare_weight' => 'required|numeric',
